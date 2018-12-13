@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <a href="{{post.url}}" class="lead">{{post.title}}</a>
+    <p>{{post.summary}}</p>
+    <form action="/posts/{{post._id}}/comments" method="post">
+      <textarea class='form-control' name="content" placeholder="Comment"></textarea>
+      <div class="text-right">
+        <button type="submit">Save</button>
+      </div>
+    </form>
+
+    {{!-- {{#each post.comments}}
+    <p>{{this.content}}</p>
+    {{/each}} --}}
+
+    <div class="row">
+      {{#each post.comments}}
+        {{> comment this}}
+        <a href="/posts/{{this.author}}/comments/{{this._id}}/replies/new">Reply</a>
+      {{/each}}
+    </div>
